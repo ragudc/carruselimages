@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <title>Cards Responsive · Desktop scroll + Mobile deck</title>
+    <meta name="description" content="Prueba: 5 cards con scroll horizontal en desktop y UI tipo deck con swipe en móvil/tableta." />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <header class="header">
+        <h1>Productos destacados</h1>
+        <p class="subtitle">
+          Desktop: desplázate lateralmente · Móvil/Tablet: desliza para navegar
+        </p>
+      </header>
+
+      <!-- Wrapper de las cards -->
+      <section class="cards" id="cards" aria-live="polite">
+        <!-- Card 1 -->
+        <article class="card" data-index="0" aria-label="Producto 1">
+          <div class="card__media">
+            <img
+              src="https://picsum.photos/seed/sneaker1/960/640"
+              alt="Zapatillas deportivas modelo 1"
+              loading="lazy"
+            />
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">Runner Pro X</h2>
+            <p class="card__text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed
+              ducimus, eligendi tempore nesciunt veniam pariatur minima alias
+              eaque esse.
+            </p>
+            <button class="card__cta" type="button">Ver detalles</button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" data-index="1" aria-label="Producto 2">
+          <div class="card__media">
+            <img
+              src="https://picsum.photos/seed/sneaker2/960/640"
+              alt="Zapatillas deportivas modelo 2"
+              loading="lazy"
+            />
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">Street Flex</h2>
+            <p class="card__text">
+              Quo perferendis cupiditate iusto officia, quae fugit commodi
+              eveniet, ad hic alias quasi labore autem expedita.
+            </p>
+            <button class="card__cta" type="button">Ver detalles</button>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" data-index="2" aria-label="Producto 3">
+          <div class="card__media">
+            <img
+              src="https://picsum.photos/seed/sneaker3/960/640"
+              alt="Zapatillas deportivas modelo 3"
+              loading="lazy"
+            />
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">Ultra Light</h2>
+            <p class="card__text">
+              Asperiores illo numquam nobis, dolore delectus minus recusandae
+              laborum aliquam officiis a. Cupiditate tempora magni.
+            </p>
+            <button class="card__cta" type="button">Ver detalles</button>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card" data-index="3" aria-label="Producto 4">
+          <div class="card__media">
+            <img
+              src="https://picsum.photos/seed/sneaker4/960/640"
+              alt="Zapatillas deportivas modelo 4"
+              loading="lazy"
+            />
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">Trail Max</h2>
+            <p class="card__text">
+              Officiis voluptates corrupti, explicabo minima earum, quod
+              molestiae sed veritatis ipsum laboriosam sunt perspiciatis?
+            </p>
+            <button class="card__cta" type="button">Ver detalles</button>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card" data-index="4" aria-label="Producto 5">
+          <div class="card__media">
+            <img
+              src="https://picsum.photos/seed/sneaker5/960/640"
+              alt="Zapatillas deportivas modelo 5"
+              loading="lazy"
+            />
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">City Breeze</h2>
+            <p class="card__text">
+              Deleniti consequuntur sequi minus velit provident impedit aliquam
+              molestias omnis dignissimos voluptatum.
+            </p>
+            <button class="card__cta" type="button">Ver detalles</button>
+          </div>
+        </article>
+      </section>
+
+      <footer class="help">
+        <small>
+          <span class="dot"></span> Pista: en móvil y tableta, desliza la card
+          principal hacia la izquierda o derecha.
+        </small>
+      </footer>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+/* ====== Reset sencillo y tokens ====== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+:root {
+  --bg: #0f1220;
+  --surface: #ffffff;
+  --surface-2: #f6f7fb;
+  --text: #0c0f1a;
+  --muted: #667085;
+  --primary: #6d28d9;      /* morado */
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(2, 6, 23, .15);
+  --shadow-lg: 0 30px 60px rgba(2, 6, 23, .2);
+  --maxw: 1440px;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 10% -10%, #1d1f33 0%, #0f1220 60%) fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ====== Layout general ====== */
+.app {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 32px);
+}
+.header {
+  color: #fff;
+  text-align: center;
+  margin-bottom: clamp(16px, 3vw, 24px);
+}
+.header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 3.5vw, 36px);
+  letter-spacing: .2px;
+}
+.subtitle {
+  margin: 0;
+  opacity: .75;
+  font-size: clamp(13px, 1.8vw, 16px);
+}
+
+/* ====== Zona de cards ====== */
+
+/* — Desktop (default ≥1024px): fila con scroll-x y snap — */
+.cards {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 8px 8px 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.cards::-webkit-scrollbar {
+  height: 10px;
+}
+.cards::-webkit-scrollbar-thumb {
+  background: #4c4f64;
+  border-radius: 999px;
+}
+.cards::-webkit-scrollbar-track {
+  background: #1c1f33;
+  border-radius: 999px;
+}
+
+/* Cada card en desktop toma un ancho responsivo agradable */
+.card {
+  flex: 0 0 clamp(320px, 40vw, 520px);
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-rows: 260px auto;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card__media {
+  position: relative;
+  background: var(--surface-2);
+}
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card__body {
+  padding: 18px 18px 20px 18px;
+}
+.card__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  letter-spacing: .2px;
+}
+.card__text {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 15px;
+}
+.card__cta {
+  display: inline-block;
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ====== Mobile + Tablet (<1024px): UI tipo "deck" apilado ====== */
+@media (max-width: 1023px) {
+  /* Quitamos el scroll y usamos un lienzo apilado */
+  .cards {
+    position: relative;
+    display: block;
+    height: min(82vh, 760px);  /* espacio para ver la card completa */
+    overflow: hidden;          /* sin barra de scroll horizontal */
+    padding: 24px 16px 32px;
+    touch-action: none;        /* manejaremos el gesto con JS */
+  }
+  .cards::-webkit-scrollbar {
+    display: none;             /* ocultar cualquier rastro de scroll */
+  }
+
+  .card {
+    position: absolute;
+    inset: auto 0 0 0;         /* se apilan desde la base */
+    margin: 0 auto;
+    width: min(92vw, 620px);
+    height: calc(100% - 8px);
+    max-height: 720px;
+    display: grid;
+    grid-template-rows: minmax(200px, 55%) auto;
+    border-radius: 20px;
+    will-change: transform;
+    box-shadow: var(--shadow-lg);
+    /* Las siguientes variables las setea JS para cada card */
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(var(--scale, 1));
+    z-index: var(--z, 1);
+    opacity: var(--opacity, 1);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
+  }
+
+  /* Deshabilitar interacción de las cards que están ocultas a la izquierda */
+  .card[aria-hidden="true"] {
+    pointer-events: none;
+  }
+}
+
+/* Pie de pista */
+.help {
+  margin-top: 8px;
+  text-align: center;
+  color: #bfc4dc;
+}
+.help .dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: #68d391; /* verde */
+  margin-right: 8px;
+  transform: translateY(-1px);
+}
